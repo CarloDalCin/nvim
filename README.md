@@ -2,9 +2,8 @@
 my nvim configuration
 
 ## Requirements
--
--
--
+- unzip
+- cargo
 
 ## Installation
 1. clone the repositori `git clone https://github.com/CarloDalCin/nvim ~/.config/nvim/`
