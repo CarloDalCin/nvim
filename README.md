@@ -4,6 +4,7 @@ my nvim configuration
 ## Requirements
 - Neovim 0.10+
 - unzip
+- git
 - cargo
 - nerd font
 
