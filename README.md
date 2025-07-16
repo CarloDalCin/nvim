@@ -9,6 +9,7 @@ my nvim configuration
 - git
 - cargo
 - nerd font
+- [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 
 Nerd Font installation:
 ```bash
