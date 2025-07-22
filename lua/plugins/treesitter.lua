@@ -5,8 +5,7 @@ return {
         build = ":TSUpdate",
 
         config = function()
-            local treesitter = require("nvim-treesitter.configs")
-            treesitter.setup({
+            require("nvim-treesitter.configs").setup({
                 highlight = {
                     enable = true,
                 },

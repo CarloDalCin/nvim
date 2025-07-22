@@ -60,7 +60,7 @@ return {
                 -- Tipo (Go to Type Definition)
                 set("n", "gt", vim.lsp.buf.type_definition, opts)
 
-                -- Rinomina simbolo
+                -- Rename variable/class ecc..
                 set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
                 -- Code Action (refactoring, import, ecc.)
@@ -73,9 +73,24 @@ return {
                 -- set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
                 set("n", "[d", vim.diagnostic.goto_prev, opts)
                 set("n", "]d", vim.diagnostic.goto_next, opts)
-                set("n", "<leader>of", vim.diagnostic.open_float, opts)
-                set("n", "<leader>q", vim.diagnostic.setloclist, opts)
+                set("n", "<leader>K", vim.diagnostic.open_float, opts)
+                set("n", "<leader>w", vim.diagnostic.setloclist, opts)
+
+                vim.api.nvim_create_autocmd('FileType', {
+                    pattern = 'qf', -- is the filetype for quickfix/diagnostica
+                    callback = function()
+                        vim.keymap.set('n', 'q', '<cmd>q<CR>', { buffer = true, desc = 'Close window' })
+                    end
+                })
             end
+        })
+        vim.diagnostic.config({
+            signs = {
+                text = signs
+            },
+            virtual_text = false,
+            underline = true,
+            update_in_insert = false,
         })
     end,
 }

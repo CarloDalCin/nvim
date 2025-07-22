@@ -1,3 +1,5 @@
+local llm_api = vim.env.LLM_KEY
+
 return {
     'saghen/blink.cmp',
     version = '1.*',
@@ -5,7 +7,7 @@ return {
         'rafamadriz/friendly-snippets',
         'L3MON4D3/LuaSnip',
         'onsails/lspkind.nvim',
-        "Exafunction/codeium.nvim",
+        "Kurama622/llm.nvim",
     },
     opts = {
         keymap = { preset = 'default' },
@@ -13,6 +15,10 @@ return {
             nerd_font_variant = vim.g.have_nerd_font and 'mono' or "",
         },
         completion = {
+            trigger = {
+                prefetch_on_insert = false,
+                show_on_blocked_trigger_characters = {}, -- puoi aggiungere ' ', '.', '=' se vuoi
+            },
             documentation = { auto_show = true },
             ghost_text = {
                 enabled = true,
@@ -20,6 +26,7 @@ return {
             },
             menu = {
                 auto_show = true,
+                scrollbar = false,
                 draw = {
                     columns = {
                         { 'label', 'label_description', gap = 1 },
@@ -29,7 +36,7 @@ return {
             },
         },
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'codium', 'buffer', 'dadbod' },
+            default = { 'lsp', 'path', 'snippets', 'llm', 'buffer', 'dadbod' },
             providers = {
                 lsp = {
                     name = 'lsp',
@@ -37,12 +44,13 @@ return {
                     module = 'blink.cmp.sources.lsp',
                     score_offset = 1000,
                 },
-                codium = {
-                    name = 'codium',
-                    enabled = true,
-                    module = 'codeium.blink',
-                    async = true,
+                llm = {
+                    name = 'llm',
+                    module = "llm.common.completion.frontends.blink",
+                    timeout_ms = 10000,
                     score_offset = 980,
+                    async = true,
+                    enabled = (llm_api and llm_api ~= "") and true or false
                 },
                 snippets = {
                     name = 'snippets',

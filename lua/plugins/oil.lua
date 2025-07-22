@@ -1,12 +1,10 @@
 return {
     "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("oil").setup({
             default_file_explorer = true,
             columns = {},
             keymaps = {
-                ["q"] = "action.close",
                 ["<Esc>"] = "actions.close",
             },
             delete_to_trash = true,
@@ -22,6 +20,7 @@ return {
             pattern = "oil",
             callback = function()
                 vim.opt_local.cursorline = true
+                vim.keymap.set("n", "q", require("oil").close)
             end,
         })
     end

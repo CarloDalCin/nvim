@@ -1,1 +1,2 @@
-vim.cmd("colorscheme default")
+vim.cmd("colorscheme rusty")
+

@@ -4,10 +4,15 @@ return {
     desc = "Increment and decrement numbers, dates, and more",
     -- stylua: ignore
     keys = {
-        { "<C-a>",  function() return require('dial.map').inc_normal() end,  expr = true, desc = "Increment", mode = { "n", "v" } },
-        { "<C-x>",  function() return require('dial.map').dec_normal() end,  expr = true, desc = "Decrement", mode = { "n", "v" } },
-        { "g<C-a>", function() return require('dial.map').inc_gnormal() end, expr = true, desc = "Increment", mode = { "n", "v" } },
-        { "g<C-x>", function() return require('dial.map').dec_gnormal() end, expr = true, desc = "Decrement", mode = { "n", "v" } },
+        { "<C-a>",  function() return require('dial.map').inc_normal() end,  expr = true, desc = "Increment", mode = "n" },
+        { "<C-x>",  function() return require('dial.map').dec_normal() end,  expr = true, desc = "Decrement", mode = "n" },
+        { "g<C-a>", function() return require('dial.map').inc_gnormal() end, expr = true, desc = "Increment", mode = "n" },
+        { "g<C-x>", function() return require('dial.map').dec_gnormal() end, expr = true, desc = "Decrement", mode = "n" },
+
+        { "<C-a>",  function() return require('dial.map').inc_visual() end,  expr = true, desc = "Increment", mode = "v" },
+        { "<C-x>",  function() return require('dial.map').dec_visual() end,  expr = true, desc = "Decrement", mode = "v" },
+        { "g<C-a>", function() return require('dial.map').inc_gvisual() end, expr = true, desc = "Increment", mode = "v" },
+        { "g<C-x>", function() return require('dial.map').dec_gvisual() end, expr = true, desc = "Decrement", mode = "v" },
     },
     opts = function()
         local augend = require("dial.augend")

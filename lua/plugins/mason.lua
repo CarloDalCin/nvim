@@ -24,7 +24,7 @@ return {
         opts = {
             ensure_installed = {
                 -- LSPs
-                "lua_ls",
+                "lua-language-server",
                 "typescript-language-server",
                 "pyright",
                 "jsonls",
@@ -44,13 +44,14 @@ return {
                 "eslint_d",
                 "flake8",
                 "shellcheck",
+                "eslint",
             },
             auto_update = true,
             run_on_start = true,
         },
         integrations = {
             ['mason-lspconfig'] = true,
-            ['mason-null-ls'] = false,
+            ['mason-null-ls'] = true,
             ['mason-nvim-dap'] = false,
         },
     }
