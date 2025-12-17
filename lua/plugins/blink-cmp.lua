@@ -69,7 +69,7 @@ return {
         cmdline = {
             keymap = { preset = 'inherit' },
             completion = {
-                ghost_text = { enabled = true },
+                ghost_text = { enabled = false },
                 menu = { auto_show = true },
             },
         },

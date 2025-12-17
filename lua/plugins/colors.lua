@@ -32,5 +32,8 @@ return {
             })
             -- require("black-metal").load()
         end,
-    }
+    },
+    {
+        "kdheepak/monochrome.nvim"
+    },
 }
