@@ -22,7 +22,6 @@ return {
         'saghen/blink.cmp',
     },
     config = function()
-        local lspconfig = require('lspconfig')
         local mason_lspconfig = require('mason-lspconfig')
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -31,9 +30,10 @@ return {
         for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
             local opts = server_opts[server_name] or {}
             opts.capabilities = capabilities
-            lspconfig[server_name].setup(opts)
+            vim.lsp.config(server_name, opts)
         end
 
+        vim.lsp.enable(mason_lspconfig.get_installed_servers())
 
         -- keybinds --
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,6 +84,7 @@ return {
                 })
             end
         })
+
         vim.diagnostic.config({
             signs = {
                 text = signs
