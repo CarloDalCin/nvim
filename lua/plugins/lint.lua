@@ -12,8 +12,6 @@ return {
             typescript = { "eslint_d" },
             typescriptreact = { "eslint_d" },
             html = { "html" },
-            css = { "stylelint" },
-            scss = { "stylelint" },
             json = { "jsonlint" },
             yaml = { "yamllint" },
             markdown = { "markdownlint" },
@@ -34,8 +32,11 @@ return {
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
             group = lint_augroup,
             callback = function()
-                lint.try_lint()
-            end,
+                local ok, lint = pcall(require, "lint")
+                if ok then
+                    lint.try_lint()
+                end
+            end
         })
     end
 }
