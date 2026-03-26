@@ -8,21 +8,21 @@ return {
         local eslint = lint.linters.eslint_d
 
         lint.linters_by_ft = {
-            javascript = eslint,
-            typescript = eslint,
-            typescriptreact = eslint,
-            html = lint.linters.html,
-            css = lint.linters.stylelint,
-            scss = lint.linters.stylelint,
-            json = lint.linters.json,
-            yaml = lint.linters.yaml,
-            markdown = lint.linters.markdown,
-            vue = lint.linters.eslint_d,
+            javascript = { "eslint_d" },
+            typescript = { "eslint_d" },
+            typescriptreact = { "eslint_d" },
+            html = { "html" },
+            css = { "stylelint" },
+            scss = { "stylelint" },
+            json = { "jsonlint" },
+            yaml = { "yamllint" },
+            markdown = { "markdownlint" },
+            vue = { "eslint_d" },
         }
 
         eslint.args = {
-            "--no-warn-ingnored",
-            "format",
+            "--no-warn-ignored",
+            "--format",
             "json",
             "--stdin",
             "--stdin-filename",
