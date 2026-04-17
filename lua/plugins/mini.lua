@@ -10,12 +10,19 @@ return {
             require('ts_context_commentstring').setup {
                 enable_autocmd = false,
             }
+
             require("mini.comment").setup {
                 options = {
                     custom_commentstring = function()
-                        return require('ts_context_commentstring.internal')
-                            .calculate_commentstring({ key = 'commentstring' })
-                            or vim.bo.commentstring
+                        local ok, ts = pcall(require, 'ts_context_commentstring')
+                        if ok then
+                            local context_comment = ts.calculate_commentstring()
+                            if context_comment and context_comment ~= "" then
+                                return context_comment
+                            end
+                        end
+
+                        return vim.bo.commentstring
                     end
                 }
             }
